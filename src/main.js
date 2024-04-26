@@ -28,6 +28,8 @@ const vuetify = createVuetify({
     directives,
 })
 
+
+
 const app = createApp(App)
 app.use(store)
 app.use(router)
@@ -37,4 +39,5 @@ app.component('CIcon', CIcon)
 app.component('DocsExample', DocsExample)
 app.use(vuetify)
 app.use(Toast)
+
 app.mount('#app')

@@ -132,3 +132,29 @@ export const get_invoiceByWeek = () => { // lấy dữ liệu hóa đơn trong t
 
     return apiUser.get(`invoice/get-invoices-by-week`)
 }
+
+export const get_countAdmin = () => { // lấy dữ liệu hóa đơn trong tuần hện tại
+
+    return apiUser.get(`user/cout-admin`)
+}
+export const get_countUser = () => { // lấy dữ liệu hóa đơn trong tuần hện tại
+
+    return apiUser.get(`user/cout-user`)
+}
+export const get_countUserWait = () => { // lấy dữ liệu hóa đơn trong tuần hện tại
+
+    return apiUser.get(`user/cout-userwait`)
+}
+export const get_freeDisk = () => { // lấy dữ liệu hóa đơn trong tuần hện tại
+
+    return axios.get(domain + '/actuator/metrics/disk.free')
+}
+export const get_userDisk = () => { // lấy dữ liệu hóa đơn trong tuần hện tại
+
+    return axios.get(domain + `/actuator/metrics/jvm.memory.used`)
+}
+
+export const get_TopUser = () => { // lấy dữ liệu hóa đơn trong tuần hện tại
+
+    return apiUser.get(`invoice/get-top-user`)
+}
