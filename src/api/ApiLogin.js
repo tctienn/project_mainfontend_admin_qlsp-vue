@@ -1,8 +1,8 @@
 import axios from "axios";
-import { taocock } from "./CookieFuntion";
+import { domain, taocock } from "./CookieFuntion";
 import { toast } from "vue3-toastify";
 
-const url = 'http://localhost:8080/'
+const url = domain
 
 const notify = (text, type) => { // thông báo
     toast(text, {

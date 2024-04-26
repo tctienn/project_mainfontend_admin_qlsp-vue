@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <Login v-if="!user" />
+  <div v-else>
     <AppSidebar />
     <div class="wrapper d-flex flex-column min-vh-100">
       <AppHeader />
@@ -17,6 +18,8 @@ import { CContainer } from '@coreui/vue'
 import AppFooter from '@/components/AppFooter.vue'
 import AppHeader from '@/components/AppHeader.vue'
 import AppSidebar from '@/components/AppSidebar.vue'
+import Login from '../views/login.vue'
+import { getCookie } from '../api/CookieFuntion'
 
 export default {
   name: 'DefaultLayout',
@@ -25,6 +28,13 @@ export default {
     AppHeader,
     AppSidebar,
     CContainer,
+    Login,
+  },
+  setup() {
+    const user = getCookie('login_token_qlsp')
+    return {
+      user,
+    }
   },
 }
 </script>

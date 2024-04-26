@@ -6,12 +6,12 @@
       </CHeaderToggler>
       <CHeaderNav class="d-none d-md-flex"> </CHeaderNav>
       <CHeaderNav class="ms-auto">
-        <CNavItem>
+        <!-- <CNavItem>
           <CNavLink href="#">
             <CIcon icon="cil-bell" size="lg" />
           </CNavLink>
-        </CNavItem>
-        <CNavItem>
+        </CNavItem> -->
+        <!-- <CNavItem>
           <CNavLink href="#">
             <CIcon icon="cil-list" size="lg" />
           </CNavLink>
@@ -20,7 +20,7 @@
           <CNavLink href="#">
             <CIcon icon="cil-envelope-open" size="lg" />
           </CNavLink>
-        </CNavItem>
+        </CNavItem> -->
       </CHeaderNav>
       <CHeaderNav>
         <li class="nav-item py-1">

@@ -7,6 +7,26 @@ import CoreuiVue from '@coreui/vue'
 import CIcon from '@coreui/icons-vue'
 import { iconsSet as icons } from '@/assets/icons'
 import DocsExample from '@/components/DocsExample'
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
+
+
+// thư viện tạo thông báo alters
+// main.ts
+import Toast from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
+
+
+
+// thư viện icon của vuetify 
+import '@mdi/font/css/materialdesignicons.css'
+
+const vuetify = createVuetify({
+    components,
+    directives,
+})
 
 const app = createApp(App)
 app.use(store)
@@ -15,5 +35,6 @@ app.use(CoreuiVue)
 app.provide('icons', icons)
 app.component('CIcon', CIcon)
 app.component('DocsExample', DocsExample)
-
+app.use(vuetify)
+app.use(Toast)
 app.mount('#app')

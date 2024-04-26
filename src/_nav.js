@@ -9,6 +9,27 @@ export default [
       text: 'admin',
     },
   },
+  {
+    component: 'CNavTitle',
+    name: 'DỮ LIỆU BÁN HÀNG',
+  },
+  {
+    component: 'CNavGroup',
+    name: 'Product',
+    to: '/product',
+    icon: 'cil-puzzle',
+    items: [
+      {
+        component: 'CNavItem',
+        name: 'Danh sách sản phẩm',
+        to: '/product/list',
+      }, {
+        component: 'CNavItem',
+        name: 'Tạo sản phẩm',
+        to: '/product/add',
+      },
+    ]
+  },
 
   {
     component: 'CNavTitle',
@@ -16,7 +37,7 @@ export default [
   },
   {
     component: 'CNavGroup',
-    name: 'Base',
+    name: 'base',
     to: '/base',
     icon: 'cil-puzzle',
     items: [

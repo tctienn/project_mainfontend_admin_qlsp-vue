@@ -1,9 +1,9 @@
 import axios from "axios";
-import { getCookie } from "./CookieFuntion";
+import { domain, getCookie } from "./CookieFuntion";
 import { toast } from "vue3-toastify";
 import { userStore } from "@/stores/counter";
 
-const url = 'http://localhost:8080/user'
+const url = domain + '/user'
 
 
 const notify = (text, type) => { // thông báo
@@ -83,17 +83,3 @@ export const get_check_cartItem = (idUser, idProduct) => {
     return apiUser.get(`cart/check-cartItem?idUser=${idUser}&idProduct=${idProduct}`)
 }
 
-export const pay = () => {
-    return apiUser.get(`pay`)
-}
-
-export const submitOrder = (amount, idUser, orderInfo, address) => {
-    return apiUser.get(`submitOrder`, {
-        params: {
-            amount: amount,
-            idUser: idUser,
-            orderInfo: orderInfo,
-            address: address
-        }
-    })
-}

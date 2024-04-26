@@ -1,7 +1,8 @@
 import { h, resolveComponent } from 'vue'
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 import DefaultLayout from '@/layouts/DefaultLayout'
+// import Login from '../views/login.vue'
 
 const routes = [
   {
@@ -21,10 +22,42 @@ const routes = [
             /* webpackChunkName: "dashboard" */ '@/views/dashboard/Dashboard.vue'
           ),
       },
-
+      {
+        path: '/login',
+        name: 'logins',
+        component: () => import('../views/login.vue'),
+      },
+      {
+        path: '/profile',
+        name: 'profile',
+        component: () => import('../views/Profile.vue'),
+      },
+      {
+        path: '/product',
+        name: 'product',
+        component: {
+          render() {
+            return h(resolveComponent('router-view'))
+          },
+        },
+        redirect: '/product/list',
+        children: [
+          {
+            path: '/product/list',
+            name: 'list',
+            component: () => import('@/views/product/Products.vue'),
+          },
+          {
+            path: '/product/add',
+            name: 'addProduct',
+            component: () => import('@/views/product/addProduct.vue'),
+          },
+        ]
+      },
+      ///
       {
         path: '/base',
-        name: 'Base',
+        name: 'base',
         component: {
           render() {
             return h(resolveComponent('router-view'))
@@ -110,13 +143,17 @@ const routes = [
 
 ]
 
+// const router = createRouter({
+//   history: createWebHashHistory(process.env.BASE_URL),
+//   routes,
+//   scrollBehavior() {
+//     // always scroll to top
+//     return { top: 0 }
+//   },
+// })
 const router = createRouter({
-  history: createWebHashHistory(process.env.BASE_URL),
-  routes,
-  scrollBehavior() {
-    // always scroll to top
-    return { top: 0 }
-  },
+  history: createWebHistory(),
+  routes: routes
 })
 
 export default router

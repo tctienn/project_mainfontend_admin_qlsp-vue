@@ -8,7 +8,23 @@
             <CRow>
               <CCol :sm="5">
                 <h4 id="traffic" class="card-title mb-0">biểu đồ</h4>
-                <div class="small text-body-secondary">biến động giao dịch trong tháng</div>
+                <div class="small text-body-secondary">biến động giao dịch trong tuần</div>
+                <div>
+                  <div style="display: flex">
+                    <div style="width: 15px; aspect-ratio: 2/2; background-color: blue"></div>
+                    hóa đơn mua
+                  </div>
+                  <div style="display: flex">
+                    <div style="width: 15px; aspect-ratio: 2/2; background-color: yellow"></div>
+                    hóa đơn chờ sử lý
+                  </div>
+                  <div style="display: flex">
+                    <div
+                      style="width: 15px; aspect-ratio: 2/2; background-color: rgb(196, 55, 55)"
+                    ></div>
+                    hóa đơn bị hỷ/ lỗi
+                  </div>
+                </div>
               </CCol>
               <CCol :sm="7" class="d-none d-md-block">
                 <CButton color="primary" class="float-end">
@@ -25,12 +41,9 @@
             </CRow>
             <div style="margin-bottom: 100px; width: 100%">
               <CRow style="z-index: 1">
-                <MainChart
-                  :chart-data="chartData"
-                  style="height: 300px; max-height: 300px; margin-top: 40px"
-                />
+                <MainChart style="height: 300px; max-height: 300px; margin-top: 40px" />
               </CRow>
-              <div style="text-align: center">biến động giao dịch trong tháng</div>
+              <div style="text-align: center">biến động giao dịch trong tuần</div>
             </div>
           </CCardBody>
           <CCardFooter>
@@ -42,29 +55,61 @@
               class="mb-2 text-center"
             >
               <CCol>
-                <div class="text-body-secondary">Visits</div>
-                <div class="fw-semibold text-truncate">29.703 Users (40%)</div>
-                <CProgress class="mt-2" color="success" thin :precision="1" :value="40" />
+                <CWidgetStatsC
+                  class="mb-3"
+                  :value="coutAdmin"
+                  :progress="{ color: 'info', value: 75 }"
+                  style="background-color: rgb(36, 18, 227); color: white"
+                  title="Visitors"
+                >
+                  <template #icon
+                    ><CIcon icon="cil-people" height="36" style="color: white"
+                  /></template>
+                  <template #title><div style="color: white">admin</div></template>
+                </CWidgetStatsC>
               </CCol>
               <CCol>
-                <div class="text-body-secondary">Unique</div>
-                <div class="fw-semibold text-truncate">24.093 Users (20%)</div>
-                <CProgress class="mt-2" color="info" thin :precision="1" :value="20" />
+                <CWidgetStatsC
+                  class="mb-3"
+                  value="87.500"
+                  style="background-color: rgb(12, 235, 90); color: white"
+                  :progress="{ color: 'info', value: 75 }"
+                  title="Visitors"
+                >
+                  <template #icon
+                    ><CIcon icon="cil-people" height="36" style="color: white"
+                  /></template>
+                  <template #title><div style="color: white">user</div></template>
+                </CWidgetStatsC>
               </CCol>
               <CCol>
-                <div class="text-body-secondary">Pageviews</div>
-                <div class="fw-semibold text-truncate">78.706 Views (60%)</div>
-                <CProgress class="mt-2" color="warning" thin :precision="1" :value="60" />
+                <CWidgetStatsC
+                  class="mb-3"
+                  value="87.500"
+                  style="background-color: rgb(228, 49, 153); color: white"
+                  :progress="{ color: 'info', value: 20 }"
+                  title="Visitors"
+                >
+                  <template #icon
+                    ><CIcon icon="cil-people" height="36" style="color: white"
+                  /></template>
+                  <template #title>Tài khoản chưa xác thực</template>
+                </CWidgetStatsC>
               </CCol>
               <CCol>
-                <div class="text-body-secondary">New Users</div>
-                <div class="fw-semibold text-truncate">22.123 Users (80%)</div>
-                <CProgress class="mt-2" color="danger" thin :precision="1" :value="80" />
-              </CCol>
-              <CCol class="d-none d-xl-block">
-                <div class="text-body-secondary">Bounce Rate</div>
-                <div class="fw-semibold text-truncate">Average Rate (40.15%)</div>
-                <CProgress class="mt-2" :value="40" thin :precision="1" />
+                <CWidgetStatsC
+                  class="mb-3"
+                  inverse
+                  style="background-color: red"
+                  value="385"
+                  :progress="{ value: 75 }"
+                  :title="'bộ nhớ Server trống '"
+                >
+                  <template #icon
+                    ><CIcon icon="cil-speedometer" height="36" />
+                    <div>sử dụng:</div></template
+                  >
+                </CWidgetStatsC>
               </CCol>
             </CRow>
           </CCardFooter>
@@ -75,83 +120,39 @@
     <CRow>
       <CCol :md="12">
         <CCard class="mb-4">
-          <CCardHeader> Traffic &amp; Sales </CCardHeader>
+          <CCardHeader> Thông tin gần dây </CCardHeader>
           <CCardBody>
             <CRow>
               <CCol :sm="12" :lg="6">
                 <CRow>
                   <CCol :xs="6">
                     <div class="border-start border-start-4 border-start-info py-1 px-3 mb-3">
-                      <div class="text-body-secondary small">New Clients</div>
+                      <div class="text-body-secondary small">Người dùng mới đăng ký</div>
                       <div class="fs-5 fw-semibold">9,123</div>
-                    </div>
-                  </CCol>
-                  <CCol :xs="6">
-                    <div class="border-start border-start-4 border-start-danger py-1 px-3 mb-3">
-                      <div class="text-body-secondary small">Recurring Clients</div>
-                      <div class="fs-5 fw-semibold">22,643</div>
                     </div>
                   </CCol>
                 </CRow>
                 <hr class="mt-0" />
-                <div
-                  v-for="item in progressGroupExample1"
-                  :key="item.title"
-                  class="progress-group mb-4"
-                >
-                  <div class="progress-group-prepend">
-                    <span class="text-body-secondary small">{{ item.title }}</span>
-                  </div>
-                  <div class="progress-group-bars">
-                    <CProgress thin color="info" :value="item.value1" />
-                    <CProgress thin color="danger" :value="item.value2" />
-                  </div>
-                </div>
               </CCol>
               <CCol :sm="12" :lg="6">
                 <CRow>
                   <CCol :xs="6">
                     <div class="border-start border-start-4 border-start-warning py-1 px-3 mb-3">
-                      <div class="text-body-secondary small">Pageviews</div>
+                      <div class="text-body-secondary small">Đơn đang chờ sử lý</div>
                       <div class="fs-5 fw-semibold">78,623</div>
-                    </div>
-                  </CCol>
-                  <CCol :xs="6">
-                    <div class="border-start border-start-4 border-start-success py-1 px-3 mb-3">
-                      <div class="text-body-secondary small">Organic</div>
-                      <div class="fs-5 fw-semibold">49,123</div>
                     </div>
                   </CCol>
                 </CRow>
                 <hr class="mt-0" />
-                <div v-for="item in progressGroupExample2" :key="item.title" class="progress-group">
-                  <div class="progress-group-header">
-                    <CIcon :icon="item.icon" class="me-2" size="lg" />
-                    <span class="title">{{ item.title }}</span>
-                    <span class="ms-auto fw-semibold">{{ item.value }}%</span>
-                  </div>
-                  <div class="progress-group-bars">
-                    <CProgress thin :value="item.value" color="warning" />
-                  </div>
-                </div>
 
                 <div class="mb-5"></div>
-
-                <div v-for="item in progressGroupExample3" :key="item.title" class="progress-group">
-                  <div class="progress-group-header">
-                    <CIcon :icon="item.icon" class="me-2" size="lg" />
-                    <span class="title">{{ item.title }}</span>
-                    <span class="ms-auto fw-semibold">
-                      {{ item.value }}
-                      <span class="text-body-secondary small">({{ item.percent }}%)</span>
-                    </span>
-                  </div>
-                  <div class="progress-group-bars">
-                    <CProgress thin :value="item.percent" color="success" />
-                  </div>
-                </div>
               </CCol>
             </CRow>
+            <br />
+            <h2>Top 3 sản phẩm thịnh hành trong tuần này</h2>
+            <div style="width: 50%">
+              <CChart type="doughnut" :data="dataFormTopProduct" />
+            </div>
             <br />
             <CTable align="middle" class="mb-0 border" hover responsive>
               <CTableHead class="text-nowrap">
@@ -159,13 +160,13 @@
                   <CTableHeaderCell class="bg-body-secondary text-center">
                     <CIcon name="cil-people" />
                   </CTableHeaderCell>
-                  <CTableHeaderCell class="bg-body-secondary"> User </CTableHeaderCell>
+                  <CTableHeaderCell class="bg-body-secondary"> Tên người dùng </CTableHeaderCell>
                   <CTableHeaderCell class="bg-body-secondary text-center">
-                    Country
+                    số điện thoại
                   </CTableHeaderCell>
-                  <CTableHeaderCell class="bg-body-secondary"> Usage </CTableHeaderCell>
+                  <CTableHeaderCell class="bg-body-secondary"> gmail </CTableHeaderCell>
                   <CTableHeaderCell class="bg-body-secondary text-center">
-                    Payment Method
+                    số đơn đã mua
                   </CTableHeaderCell>
                   <CTableHeaderCell class="bg-body-secondary"> Activity </CTableHeaderCell>
                 </CTableRow>
@@ -176,7 +177,7 @@
                     <CAvatar size="md" :src="item.avatar.src" :status="item.avatar.status" />
                   </CTableDataCell>
                   <CTableDataCell>
-                    <div>{{ item.user.name }}</div>
+                    <div>{{ item.user.name }}ssssssss</div>
                     <div class="small text-body-secondary text-nowrap">
                       <span>{{ item.user.new ? 'New' : 'Recurring' }}</span> |
                       {{ item.user.registered }}
@@ -221,56 +222,70 @@ import avatar4 from '@/assets/images/avatars/4.jpg'
 import avatar5 from '@/assets/images/avatars/5.jpg'
 import avatar6 from '@/assets/images/avatars/6.jpg'
 import MainChart from './MainChart'
-
+import { CChart } from '@coreui/vue-chartjs'
+import { get_invoiceByWeek } from '../../api/ApiAdmin'
+import { getTopProducts } from './CheckData'
+import { ref } from 'vue'
 export default {
   name: 'DashboSrd',
   components: {
     MainChart,
+    CChart,
   },
   setup() {
-    const chartData = {
-      labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    const coutAdmin = ref(0)
+    const dataTopProduct = ref([
+      ['name1', 1],
+      ['name2', 1],
+      ['name3', 1],
+      ['otherProduct', 1],
+    ])
+    var dataFormTopProduct = ref({
+      labels: [
+        dataTopProduct.value[0][0],
+        dataTopProduct.value[1][0],
+        dataTopProduct.value[2][0],
+        dataTopProduct.value[3][0],
+      ],
       datasets: [
         {
-          label: 'Dataset 1',
-          data: [34, 56, 12, 43, 22, 53, 9],
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 1)',
-          borderWidth: 1,
-        },
-        {
-          label: 'Dataset 2',
-          data: [78, 94, 67, 91, 73, 82, 69],
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255, 99, 132, 1)',
-          borderWidth: 1,
+          backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+          data: [0, 0, 0, 0],
         },
       ],
+    })
+
+    const getDataTopProduct = async () => {
+      dataTopProduct.value = [
+        ['name1', 2],
+        ['name2', 2],
+        ['name3', 2],
+        ['otherProduct', 2],
+      ]
+      // dataFormTopProduct.value.datasets[0].data = [2, 2, 2, 2]
+      const rspon = await get_invoiceByWeek()
+
+      dataTopProduct.value = getTopProducts(rspon.data)
+      dataFormTopProduct.value.labels = [
+        dataTopProduct.value[0][0],
+        dataTopProduct.value[1][0],
+        dataTopProduct.value[2][0],
+        dataTopProduct.value[3][0],
+      ]
+
+      dataFormTopProduct.value.datasets[0].data = [
+        dataTopProduct.value[0][1],
+        dataTopProduct.value[1][1],
+        dataTopProduct.value[2][1],
+        dataTopProduct.value[3][1],
+      ]
+      dataFormTopProduct.value = { ...dataFormTopProduct.value }
+
+      coutAdmin.value = 1
     }
-    const progressGroupExample1 = [
-      { title: 'Thứ 2', value1: 0, value2: 0 },
-      { title: 'Tuesday', value1: 56, value2: 94 },
-      { title: 'Wednesday', value1: 12, value2: 67 },
-      { title: 'Thursday', value1: 43, value2: 91 },
-      { title: 'Friday', value1: 22, value2: 73 },
-      { title: 'Saturday', value1: 53, value2: 82 },
-      { title: 'Sunday', value1: 9, value2: 69 },
-    ]
-    const progressGroupExample2 = [
-      { title: 'Male', icon: 'cil-user', value: 53 },
-      { title: 'Female', icon: 'cil-user-female', value: 43 },
-    ]
-    const progressGroupExample3 = [
-      {
-        title: 'Organic Search',
-        icon: 'cib-google',
-        percent: 56,
-        value: '191,235',
-      },
-      { title: 'Facebook', icon: 'cib-facebook', percent: 15, value: '51,223' },
-      { title: 'Twitter', icon: 'cib-twitter', percent: 11, value: '37,564' },
-      { title: 'LinkedIn', icon: 'cib-linkedin', percent: 8, value: '27,319' },
-    ]
+
+    getDataTopProduct()
+
     const tableExample = [
       {
         avatar: { src: avatar1, status: 'success' },
@@ -364,10 +379,9 @@ export default {
 
     return {
       tableExample,
-      progressGroupExample1,
-      progressGroupExample2,
-      progressGroupExample3,
-      chartData,
+
+      dataFormTopProduct,
+      coutAdmin,
     }
   },
 }

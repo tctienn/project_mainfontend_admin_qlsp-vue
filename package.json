@@ -16,12 +16,15 @@
     "@coreui/utils": "^2.0.2",
     "@coreui/vue": "^5.0.0",
     "@coreui/vue-chartjs": "^3.0.0",
+    "@mdi/font": "^7.4.47",
     "@popperjs/core": "^2.11.8",
     "axios": "^1.6.8",
     "chart.js": "^4.4.2",
     "simplebar-vue": "^2.3.3",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
+    "vue3-toastify": "^0.2.1",
+    "vuetify": "^3.5.17",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
