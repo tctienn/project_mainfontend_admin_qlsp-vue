@@ -79,7 +79,7 @@ export default {
     const data = ref({
       title: null,
       conten: null,
-      nameCreateUser: null,
+      nameCreateUser: user.user.userName,
       imgMain: null,
       imgBackGround: null,
     })

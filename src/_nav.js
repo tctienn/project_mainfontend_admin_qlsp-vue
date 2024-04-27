@@ -48,6 +48,11 @@ export default [
         name: 'Tạo blog mới',
         to: '/blog/add',
       },
+      {
+        component: 'CNavItem',
+        name: 'Quản lý blog hiển thị',
+        to: '/blog/blog-control',
+      },
 
 
     ]

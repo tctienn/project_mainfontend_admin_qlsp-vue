@@ -73,6 +73,11 @@ const routes = [
             name: 'UpdateBlog',
             component: () => import('@/views/blog/UpdateBlog.vue'),
           },
+          {
+            path: 'blog-control',
+            name: 'control',
+            component: () => import('@/views/blog/BlogControl.vue'),
+          },
         ]
       },
       ///////

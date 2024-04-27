@@ -67,8 +67,14 @@ apiUser.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
     // Xử lý lỗi
-    console.log('lỗi trong api usser', error)
-    notify(error.response.data, "error")
+    if (error.response) {
+        console.log('lỗi trong api admin', error)
+        notify(error.response.data, "error")
+    } else {
+        console.log('lỗi không xác định', error)
+        notify("Có lỗi không xác định xảy ra", "error")
+    }
+
 
     // console.log('lỗi', error.response.data)
     return Promise.reject(error);
@@ -243,4 +249,8 @@ export const post_updateBlogImg = (idBlog, fileMainImg, fileBackgroungImg) => {
 
 export const post_deleBlog = (idBlog) => {
     return apiUser.post(`blog/post-delete-blog?idBlog=${idBlog}`)
+}
+
+export const post_addBlogByRender = (blogRender) => {
+    return apiUser.post(`blog/post-add-blog-render`, blogRender)
 }

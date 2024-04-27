@@ -6,7 +6,17 @@
           <strong>DANH SÁCH BLOG</strong>
         </CCardHeader>
         <CCardBody>
-          <div class="text-body-secondary small"></div>
+          <div class="text-body-secondary small">
+            <div>
+              <input
+                type="text"
+                style="padding: 2px"
+                v-model="textSearch"
+                placeholder=" nhập tiêu đề blog"
+              />
+              <button @click="clickSearch"><v-icon>mdi-magnify</v-icon></button>
+            </div>
+          </div>
           <br />
           <div style="width: 100%">
             <table style="width: 100%">
@@ -25,6 +35,7 @@
                 :key="i"
                 :style="{
                   backgroundColor: 1 % 2 == 0 ? 'ưhite' : 'rgb(216, 216, 216)',
+                  border: 'solid 1px rgb(129, 129, 129)',
                 }"
               >
                 <td>{{ e.id }}</td>
@@ -34,9 +45,19 @@
                 </td>
                 <td>{{ e.nameCreateUser }}</td>
                 <td>{{ e.createTime }}</td>
-                <td><img :src="e.imgMain" alt="Main Image" style="max-width: 100px" /></td>
                 <td>
-                  <img :src="e.imgBackGround" alt="Background Image" style="max-width: 100px" />
+                  <img
+                    :src="e.imgMain"
+                    alt="Main Image"
+                    style="max-width: 100px; aspect-ratio: 2/2"
+                  />
+                </td>
+                <td>
+                  <img
+                    :src="e.imgBackGround"
+                    alt="Background Image"
+                    style="max-width: 100px; aspect-ratio: 2/2"
+                  />
                 </td>
                 <td style="display: flex">
                   <button class="action" @click="clickUpdate(e.id)">sửa</button>
