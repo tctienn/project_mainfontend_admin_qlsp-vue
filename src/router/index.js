@@ -33,6 +33,50 @@ const routes = [
         component: () => import('../views/Profile.vue'),
       },
       {
+        path: '/invoice',
+        name: 'invoice',
+        redirect: '/invoice',
+      },
+      {
+        path: '/invoice/list',
+        name: 'invoices',
+        component: () => import('@/views/invoice/Invoices.vue'),
+      },
+      {
+        path: '/invoice/Wait',
+        name: 'InvoiceWait',
+        component: () => import('@/views/invoice/InvoiceWait.vue'),
+      },
+      ///blog
+      {
+        path: '/blog',
+        name: 'blog',
+        component: {
+          render() {
+            return h(resolveComponent('router-view'))
+          },
+        },
+        redirect: '/list',
+        children: [
+          {
+            path: 'list',
+            name: 'BlogList',
+            component: () => import('@/views/blog/Blogs.vue'),
+          },
+          {
+            path: 'add',
+            name: 'CreateBlog',
+            component: () => import('@/views/blog/AddBlog.vue'),
+          },
+          {
+            path: 'update/:id',
+            name: 'UpdateBlog',
+            component: () => import('@/views/blog/UpdateBlog.vue'),
+          },
+        ]
+      },
+      ///////
+      {
         path: '/product',
         name: 'product',
         component: {
@@ -55,102 +99,12 @@ const routes = [
         ]
       },
       ///
-      {
-        path: '/base',
-        name: 'base',
-        component: {
-          render() {
-            return h(resolveComponent('router-view'))
-          },
-        },
-        redirect: '/base/breadcrumbs',
-        children: [
-          {
-            path: '/base/accordion',
-            name: 'Accordion',
-            component: () => import('@/views/base/Accordion.vue'),
-          },
-          {
-            path: '/base/breadcrumbs',
-            name: 'Breadcrumbs',
-            component: () => import('@/views/base/Breadcrumbs.vue'),
-          },
-          {
-            path: '/base/cards',
-            name: 'Cards',
-            component: () => import('@/views/base/Cards.vue'),
-          },
-          {
-            path: '/base/carousels',
-            name: 'Carousels',
-            component: () => import('@/views/base/Carousels.vue'),
-          },
-          {
-            path: '/base/collapses',
-            name: 'Collapses',
-            component: () => import('@/views/base/Collapses.vue'),
-          },
-          {
-            path: '/base/list-groups',
-            name: 'List Groups',
-            component: () => import('@/views/base/ListGroups.vue'),
-          },
-          {
-            path: '/base/navs',
-            name: 'Navs',
-            component: () => import('@/views/base/Navs.vue'),
-          },
-          {
-            path: '/base/paginations',
-            name: 'Paginations',
-            component: () => import('@/views/base/Paginations.vue'),
-          },
-          {
-            path: '/base/placeholders',
-            name: 'Placeholders',
-            component: () => import('@/views/base/Placeholders.vue'),
-          },
-          {
-            path: '/base/popovers',
-            name: 'Popovers',
-            component: () => import('@/views/base/Popovers.vue'),
-          },
-          {
-            path: '/base/progress',
-            name: 'Progress',
-            component: () => import('@/views/base/Progress.vue'),
-          },
-          {
-            path: '/base/spinners',
-            name: 'Spinners',
-            component: () => import('@/views/base/Spinners.vue'),
-          },
-          {
-            path: '/base/tables',
-            name: 'Tables',
-            component: () => import('@/views/base/Tables.vue'),
-          },
-          {
-            path: '/base/tooltips',
-            name: 'Tooltips',
-            component: () => import('@/views/base/Tooltips.vue'),
-          },
-        ],
-      },
 
     ],
   },
 
 ]
 
-// const router = createRouter({
-//   history: createWebHashHistory(process.env.BASE_URL),
-//   routes,
-//   scrollBehavior() {
-//     // always scroll to top
-//     return { top: 0 }
-//   },
-// })
 const router = createRouter({
   history: createWebHistory(),
   routes: routes

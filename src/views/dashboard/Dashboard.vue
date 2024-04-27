@@ -7,7 +7,6 @@
           <CCardBody>
             <CRow>
               <CCol :sm="5">
-                <h4 id="traffic" class="card-title mb-0">biểu đồ</h4>
                 <div class="small text-body-secondary">biến động giao dịch trong tuần</div>
                 <div>
                   <div style="display: flex">
@@ -46,9 +45,9 @@
                 </div>
               </CCol>
               <CCol :sm="7" class="d-none d-md-block">
-                <CButton @click="exportExcel" color="primary" class="float-end">
+                <!-- <CButton @click="exportExcel" color="primary" class="float-end">
                   <CIcon icon="cil-cloud-download" />
-                </CButton>
+                </CButton> -->
                 <CButtonGroup
                   class="float-end me-3"
                   role="group"
@@ -158,7 +157,7 @@
                   <CCol :xs="6">
                     <div class="border-start border-start-4 border-start-warning py-1 px-3 mb-3">
                       <div class="text-body-secondary small">Đơn đang chờ sử lý</div>
-                      <div class="fs-5 fw-semibold">78,623</div>
+                      <div class="fs-5 fw-semibold">{{ countInvoiceWait }}</div>
                     </div>
                   </CCol>
                 </CRow>
@@ -173,6 +172,7 @@
               <CChart type="doughnut" :data="dataFormTopProduct" />
             </div>
             <br />
+            <h2>Người dùng mua nhiều nhất trong tuần này</h2>
             <CTable align="middle" class="mb-0 border" hover responsive>
               <CTableHead class="text-nowrap">
                 <CTableRow>
@@ -204,7 +204,9 @@
                   <CTableDataCell class="text-center">
                     <div class="fw-semibold">{{ e.gmail }}</div>
                   </CTableDataCell>
-                  <CTableDataCell style="text-align: center"> {{ e.coun }}</CTableDataCell>
+                  <CTableDataCell style="text-align: center">
+                    {{ e.coun }}
+                  </CTableDataCell>
                 </CTableRow>
               </CTableBody>
             </CTable>
@@ -228,6 +230,7 @@ import {
   get_countAdmin,
   get_countUser,
   get_countUserWait,
+  get_coutInvoiceWait,
   get_freeDisk,
   get_invoiceByWeek,
   get_TopUser,
@@ -235,7 +238,9 @@ import {
 } from '../../api/ApiAdmin'
 import { getTopProducts } from './CheckData'
 import { ref } from 'vue'
-import { exportDataToExcel } from './ExportFileExce'
+
+// import JsonExcel from 'vue-json-excel3'
+
 export default {
   name: 'DashboSrd',
   components: {
@@ -250,6 +255,7 @@ export default {
     const dislUser = ref(0)
     const topUser = ref([])
     const invoiceByWeek = ref([])
+    const countInvoiceWait = ref(0)
     const count = async () => {
       const admin = await get_countAdmin()
       const user = await get_countUser()
@@ -258,6 +264,7 @@ export default {
       const respondisk = await get_userDisk()
       const top = await get_TopUser()
       const invoiWeek = await get_invoiceByWeek()
+      const countIncoiceWaitRespon = await get_coutInvoiceWait()
       coutAdmin.value = admin.data
       coutUser.value = user.data
       coutUserWait.value = userWait.data
@@ -265,7 +272,7 @@ export default {
       dislUser.value = (respondisk.data.measurements[0].value / 1e9).toFixed(3) //gb
       topUser.value = top.data
       invoiceByWeek.value = invoiWeek.data
-      console.log('invoice', invoiceByWeek.value)
+      countInvoiceWait.value = countIncoiceWaitRespon.data
     }
     count()
     const dataTopProduct = ref([
@@ -321,13 +328,16 @@ export default {
     getDataTopProduct()
 
     const exportExcel = () => {
-      const s = [
-        { name: 'John', age: 30, city: 'New York' },
-        { name: 'Jane', age: 20, city: 'Chicago' },
-        // Thêm dữ liệu của bạn ở đây
-      ]
-      exportDataToExcel(s, 'myFilsse', 'xls')
-      // exportDataToExcel(myData, 'myFile', 'xls');
+      // json_fields.value = {
+      //   Tên: 'name',
+      //   Tuổi: 'age',
+      //   Email: 'email',
+      // }
+      // json_data.value = [
+      //   { name: 'Nguyễn Văn A', age: 30, email: 'nguyenvana@example.com' },
+      //   { name: 'Trần Thị B', age: 25, email: 'tranb@example.com' },
+      //   { name: 'Lê Văn C', age: 35, email: 'levanc@example.com' },
+      // ]
     }
     return {
       dataFormTopProduct,
@@ -337,6 +347,7 @@ export default {
       diskFree,
       dislUser,
       topUser,
+      countInvoiceWait,
 
       exportExcel,
     }

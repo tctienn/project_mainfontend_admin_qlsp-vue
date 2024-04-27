@@ -158,3 +158,89 @@ export const get_TopUser = () => { // lấy dữ liệu hóa đơn trong tuần 
 
     return apiUser.get(`invoice/get-top-user`)
 }
+
+export const get_invoices = (data) => { // lấy dữ liệu hóa đơn trong tuần hện tại
+
+    return apiUser.get(`invoice/get-invoices`, {
+        params: {
+
+            page: (data.page - 1),
+            size: data.size,
+            sort: 'id,asc'
+        }
+    })
+}
+
+export const get_invoiceBySohd = (sohd) => { // lấy dữ liệu hóa đơn trong tuần hện tại
+
+    return apiUser.get(`invoice/findter-name/${sohd}`)
+}
+
+export const get_invoiceWait = (data) => { // lấy dữ liệu hóa đơn trong tuần hện tại
+
+    return apiUser.get(`invoice/get-invoice-wait`, {
+        params: {
+
+            page: (data.page - 1),
+            size: data.size,
+            sort: 'id,asc'
+        }
+    })
+}
+
+
+export const post_updategiaohang = (sohd, giaohang) => { // lấy dữ liệu hóa đơn trong tuần hện tại
+
+    return apiUser.post(`invoice/update-giaohang?sohd=${sohd}&giaohang=${giaohang}`)
+}
+
+export const get_Blogs = (data) => { // lấy dữ liệu hóa đơn trong tuần hện tại
+
+    return axios.get(domain + `/public/blog/get-blogs`, {
+        params: {
+            page: (data.page - 1),
+            size: data.size,
+            sort: 'id,asc'
+        }
+    })
+}
+
+export const get_Blogs_by_titleContaing = (data) => { // lấy dữ liệu hóa đơn trong tuần hện tại
+
+    return apiUser.get(`blog/get-all-blogs-ByNameContaing`, {
+        params: {
+            title: data.title,
+            page: (data.page - 1),
+            size: data.size,
+            sort: 'id,asc'
+        }
+    })
+}
+
+export const post_addBlog = (data) => {
+    return apiUser.post(`blog/post-addBlog`, data)
+}
+export const post_updateBlog = (data) => {
+    return apiUser.post(`blog/post-updateBlog`, data)
+}
+
+export const post_updateBlogImg = (idBlog, fileMainImg, fileBackgroungImg) => {
+    let formData = new FormData();
+    formData.append('idBlog', idBlog);
+    formData.append('fileMainImg', fileMainImg);
+    formData.append('fileBackgroungImg', fileBackgroungImg)
+    if (getCookie('login_token_qlsp') == null) {
+        return notify("người dùng chưa đăng nhập", "error")
+    }
+    const token = getCookie('login_token_qlsp').stringToken
+    return axios.post(`${url}/blog/post-update-imgBLog`, formData, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+}
+
+export const post_deleBlog = (idBlog) => {
+    return apiUser.post(`blog/post-delete-blog?idBlog=${idBlog}`)
+}
