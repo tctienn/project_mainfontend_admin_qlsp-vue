@@ -254,3 +254,59 @@ export const post_deleBlog = (idBlog) => {
 export const post_addBlogByRender = (blogRender) => {
     return apiUser.post(`blog/post-add-blog-render`, blogRender)
 }
+
+export const post_addCatergory = (catergory) => {
+    return apiUser.post(`catergory/add-catergory`, catergory)
+}
+export const post_updateCatergory = (catergory) => {
+    return apiUser.post(`catergory/update-catergory`, catergory)
+}
+export const post_deleteCategory = (idCatergory) => {
+    return apiUser.post(`catergory/delete-catergory?idCatergory=${idCatergory}`)
+}
+
+export const post_addTag = (tag) => {
+    return apiUser.post(`tag/add-tag`, tag)
+}
+export const post_updateTag = (tag) => {
+    return apiUser.post(`tag/update-tag`, tag)
+}
+export const post_deleteTag = (idTag) => {
+    return apiUser.post(`tag/delete-tag?idTag=${idTag}`)
+}
+
+export const post_addBrand = (brand) => {
+    return apiUser.post(`brand/add-brand`, brand)
+}
+export const post_updateBrand = (brand) => {
+    return apiUser.post(`brand/update-brand`, brand)
+}
+
+export const post_deleteBrand = (idBrand) => {
+    return apiUser.post(`brand/delete-brand?idBrand=${idBrand}`)
+}
+export const post_updateImgBrand = (idBrand, fileImg) => {
+    let formData = new FormData();
+    formData.append('idBrand', idBrand);
+    formData.append('fileImg', fileImg);
+    if (getCookie('login_token_qlsp') == null) {
+        return notify("người dùng chưa đăng nhập", "error")
+    }
+    const token = getCookie('login_token_qlsp').stringToken
+    return axios.post(`${url}/brand/update-imgBrand`, formData, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+}
+
+export const post_addSize = (size) => {
+    return apiUser.post(`size/add-size`, size)
+}
+export const post_updateSize = (size) => {
+    return apiUser.post(`size/update-size`, size)
+}
+export const post_deleteSize = (id) => {
+    return apiUser.post(`size/delete-size?idSize=${id}`)
+}

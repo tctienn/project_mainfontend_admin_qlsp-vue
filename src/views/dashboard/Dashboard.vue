@@ -45,9 +45,9 @@
                 </div>
               </CCol>
               <CCol :sm="7" class="d-none d-md-block">
-                <!-- <CButton @click="exportExcel" color="primary" class="float-end">
+                <CButton @click="dowExcelInvoiceByweek" color="primary" class="float-end">
                   <CIcon icon="cil-cloud-download" />
-                </CButton> -->
+                </CButton>
                 <CButtonGroup
                   class="float-end me-3"
                   role="group"
@@ -168,11 +168,11 @@
             </CRow>
             <br />
             <h2>Top 3 sản phẩm thịnh hành trong tuần này</h2>
-            <div style="width: 50%">
+            <div style="width: 50%; display: flex">
               <CChart type="doughnut" :data="dataFormTopProduct" />
             </div>
             <br />
-            <h2>Người dùng mua nhiều nhất trong tuần này</h2>
+            <h2>Người dùng mua nhiều nhất</h2>
             <CTable align="middle" class="mb-0 border" hover responsive>
               <CTableHead class="text-nowrap">
                 <CTableRow>
@@ -218,12 +218,6 @@
 </template>
 
 <script>
-// import avatar1 from '@/assets/images/avatars/1.jpg'
-// import avatar2 from '@/assets/images/avatars/2.jpg'
-// import avatar3 from '@/assets/images/avatars/3.jpg'
-// import avatar4 from '@/assets/images/avatars/4.jpg'
-// import avatar5 from '@/assets/images/avatars/5.jpg'
-// import avatar6 from '@/assets/images/avatars/6.jpg'
 import MainChart from './MainChart'
 import { CChart } from '@coreui/vue-chartjs'
 import {
@@ -238,6 +232,7 @@ import {
 } from '../../api/ApiAdmin'
 import { getTopProducts } from './CheckData'
 import { ref } from 'vue'
+import { downloadExcel } from './ExportFileExce'
 
 // import JsonExcel from 'vue-json-excel3'
 
@@ -307,18 +302,19 @@ export default {
       const rspon = await get_invoiceByWeek()
 
       dataTopProduct.value = getTopProducts(rspon.data)
+
       dataFormTopProduct.value.labels = [
-        dataTopProduct.value[0][0],
-        dataTopProduct.value[1][0],
-        dataTopProduct.value[2][0],
-        dataTopProduct.value[3][0],
+        dataTopProduct.value[0] ? dataTopProduct.value[0][0] : 'null',
+        dataTopProduct.value[1] ? dataTopProduct.value[1][0] : 'null',
+        dataTopProduct.value[2] ? dataTopProduct.value[2][0] : 'null',
+        dataTopProduct.value[3] ? dataTopProduct.value[3][0] : 'null',
       ]
 
       dataFormTopProduct.value.datasets[0].data = [
-        dataTopProduct.value[0][1],
-        dataTopProduct.value[1][1],
-        dataTopProduct.value[2][1],
-        dataTopProduct.value[3][1],
+        dataTopProduct.value[0] ? dataTopProduct.value[0][1] : 0,
+        dataTopProduct.value[1] ? dataTopProduct.value[1][1] : 0,
+        dataTopProduct.value[2] ? dataTopProduct.value[2][1] : 0,
+        dataTopProduct.value[3] ? dataTopProduct.value[3][1] : 0,
       ]
       dataFormTopProduct.value = { ...dataFormTopProduct.value }
 
@@ -326,18 +322,13 @@ export default {
     }
 
     getDataTopProduct()
-
-    const exportExcel = () => {
-      // json_fields.value = {
-      //   Tên: 'name',
-      //   Tuổi: 'age',
-      //   Email: 'email',
-      // }
-      // json_data.value = [
-      //   { name: 'Nguyễn Văn A', age: 30, email: 'nguyenvana@example.com' },
-      //   { name: 'Trần Thị B', age: 25, email: 'tranb@example.com' },
-      //   { name: 'Lê Văn C', age: 35, email: 'levanc@example.com' },
-      // ]
+    const exportExcel = (data, nameTable, fileName) => {
+      downloadExcel(data, nameTable, fileName)
+    }
+    const dowExcelInvoiceByweek = () => {
+      get_invoiceByWeek().then((data) =>
+        exportExcel(data.data, 'DỮ LIỆU HÓA ĐƠN TUẦN NÀY', 'invoice_week'),
+      )
     }
     return {
       dataFormTopProduct,
@@ -349,7 +340,7 @@ export default {
       topUser,
       countInvoiceWait,
 
-      exportExcel,
+      dowExcelInvoiceByweek,
     }
   },
 }

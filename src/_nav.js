@@ -28,6 +28,26 @@ export default [
         name: 'Tạo sản phẩm',
         to: '/product/add',
       },
+      {
+        component: 'CNavItem',
+        name: 'Danh mục (catergory)',
+        to: '/product/catergory',
+      },
+      {
+        component: 'CNavItem',
+        name: 'Nhãn (tag)',
+        to: '/product/tag',
+      },
+      {
+        component: 'CNavItem',
+        name: 'Thương hiệu (brand)',
+        to: '/product/brand',
+      },
+      {
+        component: 'CNavItem',
+        name: 'Kích cỡ (size)',
+        to: '/product/size',
+      },
     ]
   },
   ////blog

@@ -1,5 +1,5 @@
 <template>
-  <CChart type="line" :data="data" :options="options" ref="mainChartRef" />
+  <CChart v-if="checkload" type="line" :data="data" :options="options" ref="mainChartRef" />
 </template>
 
 <script>
@@ -17,6 +17,7 @@ export default {
     CChart,
   },
   setup() {
+    const checkload = ref(false)
     const mainChartRef = ref()
     const border = 'rgb(210, 210, 210)'
 
@@ -244,6 +245,8 @@ export default {
       ]
       data.value.datasets[2].data = findter.value.false
       data.value = { ...data.value }
+      checkload.value = true // load cho biểu đồ hoạt động
+      console.log('ay', datadind)
       // data.value.datasets[1].data = [0, 100, 0, 0, 0, 0]
       // console.log('mainnchar', findter.value)
     }
@@ -266,6 +269,7 @@ export default {
       data,
       mainChartRef,
       options,
+      checkload,
     }
   },
 }
