@@ -112,9 +112,6 @@
                       <td><img :src="e.blog.imgMain" style="width: 20px; aspect-ratio: 2/2" /></td>
                       <td>{{ e.type }}</td>
                       <td>{{ e.top }}</td>
-                      <td>
-                        <button>xóa</button>
-                      </td>
                     </tr>
                   </table>
                 </div>
@@ -161,10 +158,10 @@
                       <td>
                         <img :src="e.blog.imgBackGround" style="width: 20px; aspect-ratio: 2/2" />
                       </td>
-                      <td>{{ e.top }}</td>
                       <td>
-                        <button>xóa</button>
+                        {{ e.type }}
                       </td>
+                      <td>{{ e.top }}</td>
                     </tr>
                   </table>
                 </div>
