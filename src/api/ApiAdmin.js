@@ -310,3 +310,12 @@ export const post_updateSize = (size) => {
 export const post_deleteSize = (id) => {
     return apiUser.post(`size/delete-size?idSize=${id}`)
 }
+export const get_users = (data) => {
+    return apiUser.get(`user/get-users`, {
+        params: {
+            page: (data.page - 1),
+            size: data.size,
+            sort: 'id,asc'
+        }
+    })
+}

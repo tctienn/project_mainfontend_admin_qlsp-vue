@@ -124,7 +124,23 @@ const routes = [
         ]
       },
       ///
-
+      {
+        path: '/user',
+        name: 'user',
+        component: {
+          render() {
+            return h(resolveComponent('router-view'))
+          },
+        },
+        redirect: '/user/list',
+        children: [
+          {
+            path: '/user/list',
+            name: 'listUser',
+            component: () => import('@/views/user/ListUser.vue'),
+          },
+        ]
+      },
     ],
   },
 

@@ -105,6 +105,26 @@ export default [
   },
 
   //////// 
+  {
+    component: 'CNavTitle',
+    name: 'Tài khoản',
+  },
+  {
+    component: 'CNavItem',
+    name: 'accout',
+    to: '/user/list',
+    icon: 'cil-notes',
+    items: [
+      {
+        component: 'CNavItem',
+        name: 'accout',
+        to: '/user/list',
+        icon: 'cil-note-add',
+      }
+
+    ]
+  },
+
 
 
 
