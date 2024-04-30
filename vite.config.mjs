@@ -2,14 +2,14 @@ import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'node:path'
 import autoprefixer from 'autoprefixer'
-import VueDevTools from 'vite-plugin-vue-devtools'
+// import VueDevTools from 'vite-plugin-vue-devtools'
 export default defineConfig(({ mode }) => {
   // Load .env
   const env = loadEnv(mode, process.cwd(), '')
   process.env = { ...process.env, ...env }
 
   return {
-    plugins: [vue(), VueDevTools()],
+    plugins: [vue()],
     base: './',
     css: {
       postcss: {
