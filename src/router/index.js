@@ -1,5 +1,6 @@
 import { h, resolveComponent } from 'vue'
-import { createRouter, createWebHistory } from 'vue-router'
+//import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 import DefaultLayout from '@/layouts/DefaultLayout'
 // import Login from '../views/login.vue'
@@ -146,9 +147,20 @@ const routes = [
 
 ]
 
+// const router = createRouter({
+//   history: createWebHistory(),
+//   routes: routes
+// })
+
+// export default router
+
 const router = createRouter({
-  history: createWebHistory(),
-  routes: routes
+  history: createWebHashHistory(process.env.BASE_URL),
+  routes,
+  scrollBehavior() {
+    // always scroll to top
+    return { top: 0 }
+  },
 })
 
 export default router
