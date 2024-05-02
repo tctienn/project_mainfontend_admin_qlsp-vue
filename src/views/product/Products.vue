@@ -48,7 +48,10 @@
                 <td>
                   <textarea readonly v-model="e.motaNgan"></textarea>
                 </td>
-                <td>{{ e.brand.name }} <img :src="e.brand.img" /></td>
+                <td>
+                  {{ e.brand.name }}
+                  <img :src="e.brand.img" style="width: 50px; aspect-ratio: 2/2" />
+                </td>
                 <td>{{ e.tag.name }}</td>
                 <td>
                   <small v-for="(e2, i2) in e.catergorys" :key="i2">{{ e2.name }}</small>
