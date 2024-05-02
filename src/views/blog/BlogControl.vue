@@ -177,7 +177,7 @@
                   <tr style="border: solid 1px rgb(168, 168, 168)">
                     <th>id blog</th>
                     <th>tiêu đề</th>
-                    <th>loại (1: slide , 2: list mini)</th>
+                    <th>loại (2: slide , 3: list mini)</th>
                     <th>top</th>
                   </tr>
                   <tr>
