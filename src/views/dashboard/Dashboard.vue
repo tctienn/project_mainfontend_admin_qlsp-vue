@@ -141,7 +141,7 @@
           <CCardHeader> Thông tin gần dây </CCardHeader>
           <CCardBody>
             <CRow>
-              <CCol :sm="12" :lg="6">
+              <!-- <CCol :sm="12" :lg="6">
                 <CRow>
                   <CCol :xs="6">
                     <div class="border-start border-start-4 border-start-info py-1 px-3 mb-3">
@@ -151,7 +151,7 @@
                   </CCol>
                 </CRow>
                 <hr class="mt-0" />
-              </CCol>
+              </CCol> -->
               <CCol :sm="12" :lg="6">
                 <CRow>
                   <CCol :xs="6">
