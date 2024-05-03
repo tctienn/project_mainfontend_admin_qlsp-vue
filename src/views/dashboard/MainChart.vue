@@ -193,7 +193,9 @@ export default {
       data.value = { ...data.value }
       // wait
       for (let day in datadind) {
-        cusses[day] = datadind[day].filter((item) => item.trangthai === 'wait')
+        cusses[day] = datadind[day].filter(
+          (item) => item.trangthai === 'succes' && item.giaohang == 'wait',
+        )
       }
       findter.value.wait = [
         cusses.Monday.reduce((accumulator, currentValue) => accumulator + currentValue.tongtien, 0),
@@ -216,7 +218,7 @@ export default {
         ),
         cusses.Sunday.reduce((accumulator, currentValue) => accumulator + currentValue.tongtien, 0),
       ]
-      data.value.datasets[2].data = findter.value.wait
+      data.value.datasets[1].data = findter.value.wait
       data.value = { ...data.value }
       /////////////false
       for (let day in datadind) {
