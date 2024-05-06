@@ -1,5 +1,5 @@
 import axios from "axios";
-import { domain, getCookie } from "./CookieFuntion";
+import { deleteCookie, domain, getCookie } from "./CookieFuntion";
 import { toast } from "vue3-toastify";
 // import { sl } from "vuetify/locale";
 import router from "@/router";
@@ -69,6 +69,7 @@ apiUser.interceptors.response.use(function (response) {
 }, function (error) {
     // Xử lý lỗi
     if (error.response.status === 403) {
+        deleteCookie('login_token_qlsp')
         notify("xác thực không hợp lệ : 403", "error")
     }
     if (error.response) {
