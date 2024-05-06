@@ -2,7 +2,7 @@ import axios from "axios";
 import { deleteCookie, domain, getCookie } from "./CookieFuntion";
 import { toast } from "vue3-toastify";
 // import { sl } from "vuetify/locale";
-import router from "@/router";
+// import router from "@/router";
 
 const url = domain + '/admin'
 
@@ -67,7 +67,7 @@ apiUser.interceptors.response.use(function (response) {
     if (error.response.status === 403) {
         deleteCookie('login_token_qlsp')
         notify("xác thực không hợp lệ : 403", "error")
-        return router.push(`/login`);
+        window.location.reload();
     }
     if (error.response) {
         console.log('lỗi trong api admin', error)
