@@ -2,7 +2,7 @@ import axios from "axios";
 import { domain, getCookie } from "./CookieFuntion";
 import { toast } from "vue3-toastify";
 // import { sl } from "vuetify/locale";
-
+import router from "@/router";
 
 const url = domain + '/admin'
 
@@ -27,6 +27,7 @@ const apiUser = axios.create({
 
 apiUser.interceptors.request.use(function (config) {
     if (getCookie('login_token_qlsp') == null) {
+        router.push(`/login`);
         return notify("người dùng chưa đăng nhập", "error")
     }
     const token = getCookie('login_token_qlsp').stringToken
@@ -67,6 +68,9 @@ apiUser.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
     // Xử lý lỗi
+    if (error.response.status === 403) {
+        notify("xác thực không hợp lệ : 403", "error")
+    }
     if (error.response) {
         console.log('lỗi trong api admin', error)
         notify(error.response.data, "error")
