@@ -26,10 +26,6 @@ const apiUser = axios.create({
 });
 
 apiUser.interceptors.request.use(function (config) {
-    if (getCookie('login_token_qlsp') == null) {
-        router.push(`/login`);
-        return notify("người dùng chưa đăng nhập", "error")
-    }
     const token = getCookie('login_token_qlsp').stringToken
     if (config.method === 'get') {
 
@@ -71,6 +67,7 @@ apiUser.interceptors.response.use(function (response) {
     if (error.response.status === 403) {
         deleteCookie('login_token_qlsp')
         notify("xác thực không hợp lệ : 403", "error")
+        return router.push(`/login`);
     }
     if (error.response) {
         console.log('lỗi trong api admin', error)
