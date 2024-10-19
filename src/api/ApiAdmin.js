@@ -321,3 +321,9 @@ export const get_users = (data) => {
         }
     })
 }
+
+export const post_updatePriceList_grapManage = (data) => {
+    return apiUser.post(`personnel/update-price-list`, data)
+}
+
+

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { domain, getCookie } from "./CookieFuntion";
 import { toast } from "vue3-toastify";
-import { userStore } from "@/stores/counter";
+// import { userStore } from "@/stores/counter";
 
 const url = domain + '/user'
 
@@ -65,8 +65,8 @@ apiUser.interceptors.response.use(function (response) {
     // Xử lý lỗi
     console.log('lỗi', error)
     notify(error.response.data, "error")
-    const user = userStore();
-    user.reload()
+    // const user = userStore();
+    // user.reload()
     // console.log('lỗi', error.response.data)
     return Promise.reject(error);
 });
@@ -82,4 +82,7 @@ export const post_add_cartItem = (idUser, idProduct, quantity) => {
 export const get_check_cartItem = (idUser, idProduct) => {
     return apiUser.get(`cart/check-cartItem?idUser=${idUser}&idProduct=${idProduct}`)
 }
+
+
+
 

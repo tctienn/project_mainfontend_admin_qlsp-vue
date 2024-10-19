@@ -4,7 +4,7 @@ import { toast } from "vue3-toastify";
 
 const url = domain
 
-const notify = (text, type) => { // thông báo
+export const notify = (text, type) => { // thông báo
     toast(text, {
         type: type,
         autoClose: 2000,

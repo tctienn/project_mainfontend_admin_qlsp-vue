@@ -40,7 +40,7 @@
                         background-color: rgb(196, 55, 55);
                       "
                     ></div>
-                    hóa đơn bị hỷ/ lỗi
+                    hóa đơn bị hủy hoặc bị bỏ
                   </div>
                 </div>
               </CCol>

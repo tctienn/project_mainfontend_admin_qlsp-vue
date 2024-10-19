@@ -1,7 +1,7 @@
 export default [
   {
     component: 'CNavItem',
-    name: 'Dashboard',
+    name: 'Trang chủ',
     to: '/dashboard',
     icon: 'cil-speedometer',
     badge: {
@@ -15,7 +15,7 @@ export default [
   },
   {
     component: 'CNavGroup',
-    name: 'Product',
+    name: 'Quản lý sản phẩm',
     to: '/product',
     icon: 'cil-puzzle',
     items: [
@@ -53,7 +53,7 @@ export default [
   ////blog
   {
     component: 'CNavGroup',
-    name: 'blog',
+    name: 'Quản lý bài đăng(Blog)',
     to: '/blog',
     icon: 'cil-calculator',
     items: [
@@ -85,19 +85,19 @@ export default [
   },
   {
     component: 'CNavItem',
-    name: 'Invloices',
+    name: 'Hóa đơn',
     to: '/invoice/list',
     icon: 'cil-notes',
     items: [
       {
         component: 'CNavItem',
-        name: 'InvoiceWait',
+        name: 'Hóa đơn đang chờ',
         to: '/invoice/wait',
         icon: 'cil-note-add',
       },
       {
         component: 'CNavItem',
-        name: 'list',
+        name: 'Danh sách hóa đơn',
         to: '/invoice/list',
         icon: 'cil-note-add',
       }
@@ -111,20 +111,80 @@ export default [
   },
   {
     component: 'CNavItem',
-    name: 'accout',
+    name: 'Tài khoản người dùng',
     to: '/user/list',
     icon: 'cil-notes',
     items: [
       {
         component: 'CNavItem',
-        name: 'accout',
+        name: 'Tài khoản',
         to: '/user/list',
         icon: 'cil-note-add',
       }
 
     ]
   },
+  /////////////////////
+  {
+    component: 'CNavTitle',
+    name: 'Nhân viên',
+  },
+  {
+    component: 'CNavItem',
+    name: 'Quản lý nhân viên',
+    to: '/personnel/priceList',
+    icon: 'cil-notes',
+    items: [
+      {
+        component: 'CNavItem',
+        name: 'Giá hóa đơn',
+        to: '/personnel/priceList',
+        icon: 'cil-note-add',
+      },
+      {
+        component: 'CNavItem',
+        name: 'Quản lý Tài khoản',
+        to: '/personnel/AccoutUser',
+        icon: 'cil-note-add',
+      },
+      {
+        component: 'CNavItem',
+        name: 'Quản lý Tài khoản chờ xác thực',
+        to: '/personnel/WaitAccout',
+        icon: 'cil-note-add',
+      },
+      {
+        component: 'CNavItem',
+        name: 'Quản lý Thống kê lương',
+        to: '/personnel/StatisticalUser',
+        icon: 'cil-note-add',
+      }
 
+
+    ]
+  },
+  {
+    component: 'CNavItem',
+    name: 'Quản lý Thông báo',
+    to: '/notification/lis',
+    icon: 'cil-notes',
+    items: [
+
+      {
+        component: 'CNavItem',
+        name: 'Danh sách thông báo',
+        to: '/notification/lis',
+        icon: 'cil-note-add',
+      },
+      {
+        component: 'CNavItem',
+        name: 'Tạo thông báo',
+        to: '/notification/create',
+        icon: 'cil-note-add',
+      }
+
+    ]
+  },
 
 
 

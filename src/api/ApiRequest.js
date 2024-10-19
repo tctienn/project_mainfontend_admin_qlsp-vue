@@ -17,6 +17,13 @@ const apiUser = axios.create({
         'Content-Type': 'application/json',
     },
 });
+const apiUser2 = axios.create({
+    baseURL: url,
+    timeout: 10000, // set timeout to 10 seconds
+    headers: {
+        'Content-Type': 'application/json',
+    },
+});
 
 apiUser.interceptors.request.use((config) => {
     config.headers = {
@@ -157,3 +164,37 @@ export const get_products_by_idsize = (data) => {
         }
     })
 }
+
+export const get_ListPrice = () => {
+    return apiUser.get(`personnel/get-picelist-grapmanage`)
+}
+
+
+export const get_grapUsers_byStatus = (status, page) => {
+    return apiUser.get(`personnel/get-usergrap-bystatus?page=${page}&size=5&sort=id,asc&status=${status}`)
+}
+export const get_grapUsers = () => {
+    return apiUser.get(`personnel/get-usergraps`)
+}
+export const update_status_userGrap = (idUser, status) => {
+    return apiUser.post(`personnel/update-status-byidGrap?idGrap=${idUser}&status=${status}`)
+}
+
+export const get_groupInvce_byUserGrap = () => {
+    return apiUser.get(`personnel/group-invoice-by-user-month`)
+}
+export const get_invoiceGrap_byIdGrap_andStatus = (idGrap, status) => {
+    return apiUser.get(`personnel/get-invoiceGrap-by-idGrap-andStatus?idGrap=${idGrap}&status=${status}`)
+}
+
+export const get_notficatios = (page) => {
+    return apiUser.get(`ManageGrap/get-notifications?page=${page}&size=5&sort=id,asc`)
+}
+
+export const delete_notficatios = (notification) => {
+    return apiUser2.post(`ManageGrap/notidfication-delete`, notification)
+}
+
+export const create_notficatio = (notification) => {
+    return apiUser2.post(`ManageGrap/notidfication-create`, notification)
+} 

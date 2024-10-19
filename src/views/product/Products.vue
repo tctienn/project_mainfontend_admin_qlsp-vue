@@ -444,9 +444,9 @@ select {
 }
 
 td {
-  font-size: 15px;
+  font-size: 12px;
 }
 th {
-  font-size: 15px;
+  font-size: 12px;
 }
 </style>
