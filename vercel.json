@@ -1,3 +1,8 @@
 {
-    "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+    "rewrites": [
+        { "source": "/(.*)", "destination": "/" },
+    {
+        "source": "/(.*)",  
+        "destination": "http://27.71.21.171:8080/$1"  
+      }]
     }
