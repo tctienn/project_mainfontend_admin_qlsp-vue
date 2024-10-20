@@ -178,12 +178,18 @@ export default {
       if (confirm('Xác nhận xuất file thống kê lương nhân viên trong tháng này')) {
         //   update_status_userGrap(id, 'false').then((e) => downloadExcel(e,))
         const response = await get_invoiceGrap_byIdGrap_andStatus(e.id, 'success')
+        const responsefalse = await get_invoiceGrap_byIdGrap_andStatus(e.id, 'false')
         // console.log('datassss', e.id)
         // alert('ay' + e.id + response.data[0].name)
         downloadExcel(
           response.data,
-          'danh sách thống kê lương theo hóa đơn nhân viên ' + e.name + ' tháng này',
+          'danh sách thống kê đơn hàng của nhân viên ' + e.name + ' tháng này',
           'usergrapiinvoice',
+        )
+        downloadExcel(
+          responsefalse.data,
+          'danh sách thống kê đơn hàng nhân viên ' + e.name + ' đã hủy tháng này',
+          'userfalseinvoice',
         )
       }
     }
