@@ -141,16 +141,23 @@ export default {
     }
     getData(currentPage.value)
 
+    // const dataTitileGroupFile = ref({
+    //   id: '',
+    //   sodon: '',
+    //   idGrap: '',
+    //   comment: '',
+    //   time_get: '',
+    //   time_done: '',
+    //   imageAccess: '',
+    //   priceForGrap: '',
+    //   status: '',
+    // })
     const dataTitileGroupFile = ref({
-      id: '',
-      sohd: '',
-      idGrap: '',
-      comment: '',
-      time_get: '',
-      time_done: '',
-      imageAccess: '',
-      priceForGrap: '',
-      status: '',
+      idGrap: '', // ID grap
+      tongHoaDon: 0, // Tổng số hóa đơn
+      tongSoTien: 0, // Tổng số tiền
+      trangThai: '', // Trạng thái
+      chiTietHoaDon: '', // Chi tiết hóa đơn
     })
     const dataGroupFile = ref([])
     const exportFileExcel = async () => {
@@ -158,10 +165,11 @@ export default {
         //   update_status_userGrap(id, 'false').then((e) => downloadExcel(e,))
         const response = await get_groupInvce_byUserGrap()
         dataGroupFile.value = response.data
+        console.log('tổng đơn ', response.data)
         dataGroupFile.value.unshift(dataTitileGroupFile.value)
         downloadExcel(
           dataGroupFile.value,
-          'danh sách thống kê lương theo hóa đơn nhân viên tháng này',
+          'danh sách thống kê lương toàn bộ  hóa đơn nhân viên tháng này',
           'usergrapiinvoice',
         )
       }
