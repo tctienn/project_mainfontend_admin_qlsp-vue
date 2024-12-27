@@ -72,7 +72,7 @@ apiUser.interceptors.response.use(function (response) {
 });
 
 export const login = (data) => {
-    return apiUser.post(`login`, {
+    return apiUser.post(`loginadmin`, {
         userName: data.userName,
         passWord: data.passWord
     })
