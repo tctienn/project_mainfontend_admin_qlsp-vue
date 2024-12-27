@@ -1,5 +1,4 @@
 {
-  "analytics": false,
     "rewrites": [
         { "source": "/(.*)", "destination": "/" },
     {
