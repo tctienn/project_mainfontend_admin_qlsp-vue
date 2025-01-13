@@ -14,7 +14,7 @@ export const notify = (text, type) => { // thông báo
 
 const apiUser = axios.create({
     baseURL: url,
-    timeout: 10000, // set timeout to 10 seconds
+    // timeout: 10000, // set timeout to 10 seconds
     headers: {
         'Content-Type': 'application/json',
     },
@@ -61,10 +61,14 @@ apiUser.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
     // Xử lý lỗi
-    if (error.response.status === 403) {
-        notify("xác thực không hợp lệ : 403", "error")
-    } else {
-        notify(error.response.data, "error")
+    try {
+        if (error.response.status === 403) {
+            notify("xác thực không hợp lệ : 403", "error")
+        } else {
+            notify(error.response.data, "error")
+        }
+    } catch (error) {
+        notify("lỗi khi gửi yêu cầu tới máy chủ : lỗi không xác định " + error.message, 'error')
     }
 
     // console.log('lỗi')

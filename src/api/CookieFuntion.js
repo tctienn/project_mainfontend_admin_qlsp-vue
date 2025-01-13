@@ -1,6 +1,8 @@
 // export const domain = "https://backendqlspayay.up.railway.app"
 // export const domain = "http://171.244.60.77:8080"
-export const domain = "https://tcds.io.vn"
+// export const domain = "https://tcds.io.vn"
+export const domain = 'https://qlspservice-production.up.railway.app'
+
 
 // const name ='login_token';
 export const taocock = (name, token) => {
