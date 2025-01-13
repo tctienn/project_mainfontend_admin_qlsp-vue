@@ -58,6 +58,7 @@ export default {
     const forecastData = ref(null)
     const openDialog = (value) => {
       // image.value = ''
+      forecastData.value = null
       dialog.value = !dialog.value
       dataDialog.value = value
     }
