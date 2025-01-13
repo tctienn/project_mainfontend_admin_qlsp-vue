@@ -34,6 +34,11 @@ const routes = [
         component: () => import('../views/Profile.vue'),
       },
       {
+        path: '/detail-main-char',
+        name: 'Chi tiết hóa đơn trong tuần',
+        component: () => import('../views/dashboard/DetailChartMain.vue'),
+      },
+      {
         path: '/invoice',
         name: 'Hóa đơn',
         redirect: '/invoice',

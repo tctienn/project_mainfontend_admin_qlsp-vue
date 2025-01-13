@@ -69,6 +69,11 @@ apiUser.interceptors.response.use(function (response) {
         notify("xác thực không hợp lệ : 403", "error")
         window.location.reload();
     }
+    // Xử lý lỗi 400
+    else if (error.response.status === 400) {
+        console.log('không xửa lý được lỗi (400):', error.response.data);
+        notify(`không xửa lý được lỗi (400): ${error.response.data.message}`, "error");
+    }
     if (error.response) {
         console.log('lỗi trong api admin', error)
         notify(error.response.data, "error")
@@ -326,4 +331,15 @@ export const post_updatePriceList_grapManage = (data) => {
     return apiUser.post(`personnel/update-price-list`, data)
 }
 
+
+export const get_count_product_by_invoice = () => { // đếm sản phẩm từ hóa đơn trong tuần đã thanh toán (product_service-python_service)
+    return apiUser.get(`invoice/count-product-invoice`)
+}
+export const get_forecast_product_by_invoice = (name) => { // dự đoán xu hướng 
+    return apiUser.post(`invoice/forecast`, null, {
+        params: {
+            name: name
+        }
+    })
+}
 

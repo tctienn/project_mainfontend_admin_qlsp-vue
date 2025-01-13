@@ -253,7 +253,10 @@ export default {
       // console.log('mainnchar', findter.value)
     }
     const getDatachar = async () => {
-      await get_invoiceByWeek().then((e) => findterdata(e.data))
+      // await get_invoiceByWeek().then((e) => findterdata(e.data))
+      const restponse = await get_invoiceByWeek()
+      findterdata(restponse.data)
+      console.log('getinvoice : ', restponse)
     }
     getDatachar()
 

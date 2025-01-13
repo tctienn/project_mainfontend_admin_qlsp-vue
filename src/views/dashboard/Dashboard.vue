@@ -53,7 +53,14 @@
                   role="group"
                   aria-label="Basic outlined example"
                 >
-                  <CButton color="secondary" variant="outline">tuần</CButton>
+                  <!-- <a href="/detailChart" style="display: block">Tuần</a> -->
+                  <CButton
+                    color="secondary"
+                    variant="outline"
+                    @click="() => router.push('/detail-main-char')"
+                  >
+                    Tuần
+                  </CButton>
                 </CButtonGroup>
               </CCol>
             </CRow>
@@ -233,7 +240,7 @@ import {
 import { getTopProducts } from './CheckData'
 import { ref } from 'vue'
 import { downloadExcel } from './ExportFileExce'
-
+import router from '../../router'
 // import JsonExcel from 'vue-json-excel3'
 
 export default {
@@ -250,6 +257,7 @@ export default {
     const dislUser = ref(0)
     const topUser = ref([])
     const invoiceByWeek = ref([])
+
     const countInvoiceWait = ref(0)
     const count = async () => {
       const admin = await get_countAdmin()
@@ -341,6 +349,7 @@ export default {
       countInvoiceWait,
 
       dowExcelInvoiceByweek,
+      router,
     }
   },
 }
